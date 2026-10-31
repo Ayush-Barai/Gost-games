@@ -30,7 +30,7 @@ npm run build
 The site exports to `out/`. Because the app uses `output: "export"`, there is no Node server requirement in production.
 
 ```bash
-npx serve out
+npm start
 ```
 
 | Script              | What it does                                  |
@@ -204,6 +204,11 @@ This project is ready for a **Render Static Site**.
 
 4. Add no environment variables.
 5. Deploy. Render serves the exported `out/` directory, including the client-side game modal and all lazy-loaded chunks.
+
+Do not configure this project as a Render **Web Service** with `next start`. Because
+`next.config.ts` uses `output: "export"`, the production output is static. If a
+host requires a start command instead of a publish directory, use `npm start`;
+it serves the generated `out/` directory.
 
 ### Option B — Blueprint
 
