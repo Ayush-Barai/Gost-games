@@ -36,7 +36,7 @@ npx serve out
 | Script              | What it does                                  |
 | ------------------- | --------------------------------------------- |
 | `npm run dev`       | Local development server                      |
-| `npm run build`     | Typecheck, lint and export static site to `out` |
+| `npm run build`     | Typecheck and export the static site to `out` |
 | `npm run typecheck` | TypeScript only (`tsc --noEmit`)              |
 | `npm run lint`      | Next.js lint command (see note below)         |
 
@@ -230,6 +230,9 @@ services:
       - path: /*
         name: X-Content-Type-Options
         value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
     routes:
       - type: rewrite
         source: /*

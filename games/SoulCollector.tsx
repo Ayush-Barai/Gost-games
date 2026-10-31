@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Heart, Sparkles } from "lucide-react";
 import { useGameApi } from "@/components/GameShell";
 import { useGameCanvas } from "@/hooks/useGameCanvas";
@@ -77,8 +77,6 @@ export default function SoulCollector() {
   setScoreRef.current = api.setScore;
   const draggingRef = useRef(false);
   const layersRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => () => {}, []);
 
   const pointer = (clientX: number, clientY: number, element: HTMLElement) => {
     const rect = element.getBoundingClientRect();

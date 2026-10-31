@@ -3,7 +3,36 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { ContactShadows, Float, Sparkles, Stars } from "@react-three/drei";
+import { Ghost as GhostIcon } from "lucide-react";
 import * as THREE from "three";
+
+function supportsWebGL() {
+  try {
+    const canvas = document.createElement("canvas");
+    return Boolean(
+      window.WebGLRenderingContext &&
+        (canvas.getContext("webgl2") || canvas.getContext("webgl")),
+    );
+  } catch {
+    return false;
+  }
+}
+
+function FallbackGhost() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+      <div className="relative">
+        <div className="absolute inset-0 -m-20 rounded-full bg-violet-600/25 blur-3xl" />
+        <div className="absolute inset-0 -m-8 rounded-full bg-cyan-400/10 blur-2xl" />
+        <GhostIcon
+          size={150}
+          className="relative animate-drift text-violet-300/80 drop-shadow-[0_0_35px_rgba(139,92,246,0.65)]"
+          strokeWidth={0.75}
+        />
+      </div>
+    </div>
+  );
+}
 
 function createGhostGeometry() {
   const geometry = new THREE.SphereGeometry(1, 72, 56);
@@ -255,14 +284,18 @@ function Scene({ reduced }: { reduced: boolean }) {
 
 export default function Ghost3D() {
   const [reduced, setReduced] = useState(false);
+  const [webgl, setWebgl] = useState<boolean | null>(null);
 
   useEffect(() => {
+    setWebgl(supportsWebGL());
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);
     const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
+
+  if (!webgl) return <FallbackGhost />;
 
   return (
     <Canvas

@@ -30,7 +30,7 @@ export function AchievementGallery() {
   const progress = Math.round((unlocked.length / ACHIEVEMENTS.length) * 100);
 
   return (
-    <div className="mt-10 rounded-2xl border border-white/10 bg-[#0a0a18]/70 p-5 sm:p-7">
+    <div id="achievements" className="mt-10 scroll-mt-24 rounded-2xl border border-white/10 bg-[#0a0a18]/70 p-5 sm:p-7">
       <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-violet-300/80">

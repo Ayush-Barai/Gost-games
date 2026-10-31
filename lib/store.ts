@@ -69,12 +69,13 @@ function withAchievements(state: ArcadeState, nextStats: ArcadeStats, bestScores
   });
 
   if (unlocked.length === 0) {
-    return { stats: nextStats, bestScores, achievements: state.achievements };
+    return { stats: nextStats, bestScores, favorites, achievements: state.achievements };
   }
 
   return {
     stats: nextStats,
     bestScores,
+    favorites,
     achievements: [...state.achievements, ...unlocked],
     toasts: [
       ...state.toasts,

@@ -1,6 +1,6 @@
 "use client";
 
-import { Ghost, Github, ArrowUp, RotateCcw, Heart } from "lucide-react";
+import { Ghost, ArrowUp, RotateCcw, Heart } from "lucide-react";
 import { useArcadeStore } from "@/lib/store";
 import { sfx } from "@/lib/audio";
 
@@ -71,23 +71,13 @@ export function Footer() {
           <h3 className="font-mono text-[10px] uppercase tracking-[0.26em] text-slate-500">The crypt</h3>
           <ul className="mt-4 space-y-2.5 text-[13px] text-slate-400">
             <li>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 transition-colors hover:text-violet-300"
-              >
-                <Github size={12} /> GitHub Repository
+              <a href="#achievements" className="transition-colors hover:text-violet-300">
+                Achievements
               </a>
             </li>
             <li>
-              <a
-                href="https://opensource.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-violet-300"
-              >
-                Open Source
+              <a href="#how-to" className="transition-colors hover:text-violet-300">
+                Scoring &amp; controls
               </a>
             </li>
             <li>
